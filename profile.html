@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#1b0f0a;color:#fff;overflow-x:hidden;}
+
+.container{display:flex;}
+
+/* SIDEBAR */
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:linear-gradient(180deg,#2a120a,#1b0f0a);
+    padding:20px;
+    position:fixed;
+    left:0;
+    top:0;
+    transition:0.4s;
+}
+
+.sidebar h2{
+    text-align: center;
+}
+.sidebar.closed{left:-260px;}
+
+.menu-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    background:#ff5a1f;
+    padding:10px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:1000;
+}
+
+.menu div{
+    padding:12px;
+    margin:10px 0;
+
+margin-top: 30px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.menu div:hover,.active{background:#ff5a1f;}
+
+.logout{
+    margin-top:30px;
+    padding:12px;
+    color:#ff5a1f;
+    border-radius:10px;
+   
+    cursor:pointer;
+}
+
+.logout:hover{
+    color: white;
+    background: #ff5a1f;
+}
+
+/* MAIN */
+.main{
+    margin-left:260px;
+    width:100%;
+    padding:20px;
+    transition:0.4s;
+}
+
+.main.full{margin-left:0;}
+
+.card{
+    background:#24120c;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(255,106,0,0.3);}
+
+.profile-header{display:flex;align-items:center;gap:20px;}
+
+.avatar{
+    width:80px;height:80px;border-radius:50%;
+    background:url(images/profile\ pic.png) center/cover;
+    border:3px solid#ff5a1f;
+}
+
+.flex{display:flex;gap:20px;flex-wrap:wrap;}
+
+.payment{
+    width:250px;
+    padding:20px;
+    margin-top: 10px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#1e2a3a,#0f1724);
+    transition:0.3s;
+}
+.payment:hover{transform:scale(1.05) rotateY(10deg);}
+
+.add-card{
+    width:200px;
+     padding:20px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:15px;cursor:pointer;
+    background-color: #ff5a1f;
+}
+
+.fade{animation:fade 0.8s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+</style>
+</head>
+
+<body>
+
+<div class="menu-btn">☰</div>
+
+<div class="sidebar">
+    <h2>My Profile</h2>
+    <div class="menu">
+        <div class="active">Home</div>
+        <div>Orders</div>
+        <div>Addresses</div>
+        <div>Payments</div>
+        <div>Wishlist</div>
+    </div>
+
+    <div class="logout">Logout</div>
+</div>
+
+<div class="main">
+
+<div class="card profile-header fade">
+    <div class="avatar"></div>
+    <div>
+        <h2> Sonal Sharma</h2>
+        <p>Premium Shopper</p>
+    </div>
+</div>
+
+<div class="card fade">
+    <h3>Recent Orders</h3>
+    <p>✔ RTX 5090 FE - Delivered</p>
+    <p>✔ Gaming Keyboard - Shipped</p>
+</div>
+
+<div class="card fade">
+    <h3>Saved Payment Methods</h3>
+    <div class="flex">
+        <div class="payment">**** **** **** 4492</div>
+        <div class="payment">**** **** **** 0118</div>
+        <div class="add-card">
+            <a href="category.html"> + Add Card</div></a>
+    </div>
+</div>
+
+</div>
+
+<script>
+
+// Toggle sidebar
+$('.menu-btn').click(function(){
+    $('.sidebar').toggleClass('closed');
+    $('.main').toggleClass('full');
+});
+
+// Active menu
+$('.menu div').click(function(){
+    $('.menu div').removeClass('active');
+    $(this).addClass('active');
+});
+
+// Logout action
+$('.logout').click(function(){
+    if(confirm('Are you sure you want to logout?')){
+        alert('Logged out successfully!');
+    }
+});
+
+// Add card
+$('.add-card').click(function(){
+    $(this).text('Processing...');
+    setTimeout(()=>{
+        $(this).text('+ Card Added');
+    },1000);
+});
+
+</script>
+
+</body>
+</html>

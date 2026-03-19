@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Arc - Saved Modules</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+:root {
+    --bg: #140603;
+    --card: #1f0a05;
+    --accent: #ff5a1f;
+    --text: #ffffff;
+    --muted: #a04a2a;
+}
+
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body {background: radial-gradient(circle at center, #1a0704, #0d0302);color: var(--text);} 
+.navbar {display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid rgba(255,90,31,0.3);} 
+nav a{margin:10px 15px; text-decoration:none; color:white; transition:.3s;}
+
+nav a:hover{color:#ff7a18;}
+
+.nav-left {display:flex;align-items:center;gap:15px;} 
+
+.logo-text{font-size:20px;color:#ff7a18;font-weight:600;text-shadow:0 0 10px #ff7a18;} 
+
+.nav-right {display:flex;align-items:center;gap:15px;} 
+
+.search-box {background:#2a0d07;border:1px solid var(--accent);padding:8px 14px;color:white;outline:none;width:240px;} 
+
+.icon-btn {width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,90,31,0.3);cursor:pointer;transition:.3s;} 
+
+.icon-btn:hover {background:var(--accent);color:black;box-shadow:0 0 10px var(--accent);} 
+
+.container {padding: 40px;} 
+
+.title {font-size: 48px;font-weight: 700;} 
+
+.actions {margin-top: 20px;display: flex;gap: 15px;} 
+
+.btn {padding: 10px 18px;border: 1px solid var(--accent);cursor: pointer;color:var(--accent);} 
+
+.btn.active, .btn:hover {background: var(--accent);color:black;box-shadow:0 0 10px var(--accent);} 
+
+.grid {margin-top: 30px;display: grid;grid-template-columns: repeat(4, 1fr);gap: 20px;} 
+
+.card {background: var(--card);border: 1px solid rgba(255,90,31,0.3);padding: 15px;transition: 0.4s;} 
+
+.card:hover {transform: translateY(-10px);box-shadow: 0 0 25px rgba(255,90,31,0.5);} 
+
+.card img {width: 100%;height: 160px;object-fit: cover;} 
+
+.price {color: var(--accent);float:right;} 
+
+.desc {font-size:12px;color:var(--muted);margin:10px 0;} 
+
+.card button {width:100%;padding:10px;background:var(--accent);border:none;color:black;} 
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="nav-left">
+        <div class="logo-text">NEOTECH</div>
+    </div>
+     <nav>
+
+<a href="index.html">Home</a>
+
+<a href="category.html">Categories</a>
+<a href="deal.html">FlashDeals</a>
+<a href="#">Contact</a>
+
+</nav>
+    <div class="nav-right">
+        <input class="search-box" placeholder="SEARCH REGISTRY...">
+      <div class="icon-btn">
+            <a href="cart.html">🛒</div></a>
+        <div class="icon-btn">
+            <a href="profile.html">👤</div></a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="title">PRODUCT MODULES</div>
+
+    <!-- CATEGORY BUTTONS -->
+    <div class="actions">
+        <div class="btn active" data-type="mobile">Mobile</div>
+        <div class="btn" data-type="laptop">Laptop</div>
+        <div class="btn" data-type="tablet">Tablet</div>
+        <div class="btn" data-type="headphone">Headphones</div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="grid" id="productGrid"></div>
+
+</div>
+
+<script>
+
+const products = {
+    mobile:[
+        {name:"iPhone X",price:"$999",img:"https://picsum.photos/400?1"},
+        {name:"Samsung S22",price:"$850",img:"https://picsum.photos/400?2"},
+        {name:"Pixel 7",price:"$799",img:"https://picsum.photos/400?3"},
+        {name:"OnePlus",price:"$699",img:"https://picsum.photos/400?4"}
+    ],
+    laptop:[
+        {name:"MacBook Pro",price:"$1999",img:"https://picsum.photos/400?5"},
+        {name:"Dell XPS",price:"$1499",img:"https://picsum.photos/400?6"},
+        {name:"HP Spectre",price:"$1399",img:"https://picsum.photos/400?7"},
+        {name:"Asus ROG",price:"$1799",img:"https://picsum.photos/400?8"}
+    ],
+    tablet:[
+        {name:"iPad Pro",price:"$1099",img:"https://picsum.photos/400?9"},
+        {name:"Galaxy Tab",price:"$899",img:"https://picsum.photos/400?10"},
+        {name:"Surface Go",price:"$799",img:"https://picsum.photos/400?11"},
+        {name:"Lenovo Tab",price:"$499",img:"https://picsum.photos/400?12"}
+    ],
+    headphone:[
+        {name:"Sony WH1000XM5",price:"$399",img:"https://picsum.photos/400?13"},
+        {name:"AirPods Max",price:"$549",img:"https://picsum.photos/400?14"},
+        {name:"Bose 700",price:"$379",img:"https://picsum.photos/400?15"},
+        {name:"JBL",price:"$199",img:"https://picsum.photos/400?16"}
+    ]
+};
+
+function render(type){
+    let html='';
+    products[type].forEach(p=>{
+        html+=`
+        <div class="card">
+            <img src="${p.img}">
+            <h3>${p.name} <span class="price">${p.price}</span></h3>
+            <div class="desc">HIGH PERFORMANCE DEVICE</div>
+            <button>Add to Cart</button>
+        </div>`;
+    });
+    $('#productGrid').html(html);
+}
+
+render('mobile');
+
+$('.btn').click(function(){
+    $('.btn').removeClass('active');
+    $(this).addClass('active');
+    render($(this).data('type'));
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PetPalace</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f5f5;
+color:#333;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:white;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#e38900;
+}
+
+.menu{
+display:flex;
+gap:30px;
+}
+
+.menu a{
+text-decoration:none;
+color:#444;
+font-weight:500;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#e38900;
+}
+
+.search{
+background:#f1f1f1;
+padding:8px 15px;
+border-radius:25px;
+}
+
+.search input{
+border:none;
+background:none;
+outline:none;
+}
+
+/* HERO */
+
+.hero{
+margin:40px 8%;
+background:#e9e3db;
+border-radius:20px;
+padding:60px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.hero-text{
+max-width:500px;
+}
+
+.tag{
+background:#f4c88c;
+display:inline-block;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+margin-bottom:15px;
+}
+
+.hero h1{
+font-size:48px;
+line-height:1.2;
+margin-bottom:15px;
+}
+
+.hero p{
+color:#666;
+margin-bottom:25px;
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-weight:500;
+margin-right:10px;
+}
+
+.btn-primary{
+background:#e38900;
+color:white;
+}
+
+.btn-light{
+background:white;
+}
+
+.hero img{
+width:350px;
+animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0px);}
+}
+
+/* CATEGORY */
+
+.section{
+padding:60px 8%;
+}
+
+.categories{
+display:flex;
+justify-content:space-between;
+margin-top:30px;
+}
+
+.cat{
+background:#e8e1d8;
+width:150px;
+height:150px;
+border-radius:50%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.cat img{
+width:60px;
+border-radius:50%;
+margin-bottom:8px;
+}
+
+.cat:hover{
+transform:scale(1.1);
+background:#f0d6a6;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+padding:20px;
+box-shadow:0 6px 15px rgba(0,0,0,0.05);
+transition:.3s;
+position:relative;
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:contain;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 25px rgba(0,0,0,0.1);
+}
+
+.price{
+font-weight:600;
+margin-top:10px;
+}
+
+.add-btn{
+margin-top:10px;
+padding:8px 16px;
+border:none;
+border-radius:20px;
+background:#eee;
+cursor:pointer;
+transition:.3s;
+}
+
+.add-btn:hover{
+background:#e38900;
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+background:#3b2417;
+color:#ddd;
+padding:60px 8%;
+margin-top:80px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:40px;
+}
+
+footer h3{
+margin-bottom:15px;
+}
+
+footer p,footer li{
+font-size:14px;
+color:#ccc;
+}
+
+footer ul{
+list-style:none;
+}
+
+.newsletter input{
+padding:10px;
+border-radius:20px;
+border:none;
+outline:none;
+margin-right:10px;
+}
+
+.join{
+background:#e38900;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+color:white;
+cursor:pointer;
+}
+
+.bottom{
+margin-top:40px;
+font-size:13px;
+opacity:.7;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">🐾 PetPalace</div>
+
+<div class="menu">
+<a href="#">Dogs</a>
+<a href="#">Cats</a>
+<a href="#">Fish</a>
+<a href="#">Rabbits</a>
+<a href="#">Small Pets</a>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Search products">
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<div class="tag">NEW COLLECTION</div>
+
+<h1>Everything Your<br>Best Friend Needs</h1>
+
+<p>High-quality pet products for happy healthy companions.</p>
+
+<button class="btn btn-primary">Shop Now</button>
+<button class="btn btn-light">View Lookbook</button>
+
+</div>
+
+<img src="https://images.unsplash.com/photo-1601758123927-196c7f60d015">
+
+</section>
+
+
+<!-- CATEGORY -->
+
+<section class="section">
+
+<h2>Shop by Category</h2>
+
+<div class="categories">
+
+<div class="cat">
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+<span>Dogs</span>
+</div>
+
+<div class="cat">
+<img src="https://cdn-icons-png.flaticon.com/512/616/616430.png">
+<span>Cats</span>
+</div>
+
+<div class="cat">
+<img src="https://cdn-icons-png.flaticon.com/512/235/235379.png">
+<span>Fish</span>
+</div>
+
+<div class="cat">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png">
+<span>Rabbits</span>
+</div>
+
+<div class="cat">
+<img src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png">
+<span>Small Pets</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section">
+
+<h2>Trending Now</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/1046/1046751.png">
+<h4>Organic Dog Food</h4>
+<p class="price">$45.00</p>
+<button class="add-btn">Add to cart</button>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/616/616430.png">
+<h4>Interactive Cat Toy</h4>
+<p class="price">$15.99</p>
+<button class="add-btn">Add</button>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+<h4>Cloud Comfort Bed</h4>
+<p class="price">$89.00</p>
+<button class="add-btn">Add</button>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
+<h4>Water Fountain</h4>
+<p class="price">$34.95</p>
+<button class="add-btn">Add</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>PetPalace</h3>
+<p>Providing high-quality essentials for beloved pets since 2010.</p>
+</div>
+
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li>New Arrivals</li>
+<li>Special Offers</li>
+<li>Gift Cards</li>
+<li>Pet Care Tips</li>
+</ul>
+</div>
+
+<div>
+<h3>Support</h3>
+<ul>
+<li>Shipping Policy</li>
+<li>Returns</li>
+<li>Track Order</li>
+<li>FAQ</li>
+</ul>
+</div>
+
+<div class="newsletter">
+<h3>Newsletter</h3>
+<input type="text" placeholder="Your email">
+<button class="join">Join</button>
+</div>
+
+</div>
+
+<div class="bottom">
+© 2024 PetPalace. All rights reserved.
+</div>
+
+</footer>
+
+
+<script>
+
+/* PAGE LOAD ANIMATION */
+
+$(document).ready(function(){
+
+$(".hero-text").hide().fadeIn(1200);
+
+$(".cat").each(function(i){
+$(this).delay(i*200).fadeIn(500);
+});
+
+});
+
+/* ADD TO CART EFFECT */
+
+$(".add-btn").click(function(){
+
+$(this).text("Added ✓");
+
+$(this).css({
+background:"#2ecc71",
+color:"#fff"
+});
+
+});
+
+</script>
+
+</body>
+</html>
