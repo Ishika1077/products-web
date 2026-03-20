@@ -46,3 +46,25 @@ $(this).css("box-shadow","0 0 0");
 });
 
 });
+
+
+$(window).on("scroll", function () {
+    $(".footer-col").each(function () {
+        let top = $(this).offset().top;
+        let scroll = $(window).scrollTop() + $(window).height();
+
+        if (scroll > top) {
+            $(this).css({
+                opacity: "1",
+                transform: "translateY(0)"
+            });
+        }
+    });
+});
+
+// Initial state
+$(".footer-col").css({
+    opacity: "0",
+    transform: "translateY(40px)",
+    transition: "0.6s ease"
+});
